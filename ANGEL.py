@@ -330,33 +330,33 @@ if len(SIG)>0:
     
 
     input="'''+OUTPUT_DIR+'.hist'+'''"
-    input_total="'''+OUTPUT_DIR+'''"
+    #input_total="'''+OUTPUT_DIR+'''"
     a=read.table(input)
-    a_total=read.table(input_total)
+    #a_total=read.table(input_total)
     total='''+str(len(genelist))+'''
     sig='''+str(len(siglist)) +'''
     window='''+str(half_window*2+1) +'''
     fit=lm(a[,2] ~ I(a[,1]^2)+a[,1])
     cc=round(fit$coefficients[3]/(-2*fit$coefficients[2]),0)    
     #kmeans_input= dist(cbind(predict(fit), abs(a[,1]-cc)))
-    dis_to_cc=abs(a[,1]-cc)
-    kmeans_input= dist(cbind(scale(a[,2]), scale(dis_to_cc)))
-    kmeans_out= kmeans(kmeans_input,2)
-    cluster1=which(kmeans_out$cluster==1)
-    cluster2=which(kmeans_out$cluster==2)
+    #dis_to_cc=abs(a[,1]-cc)
+    #kmeans_input= dist(cbind(scale(a[,2]), scale(dis_to_cc)))
+    #kmeans_out= kmeans(kmeans_input,2)
+    #cluster1=which(kmeans_out$cluster==1)
+    #cluster2=which(kmeans_out$cluster==2)
 
-    dis_to_cc_1=dis_to_cc[cluster1]
-    dis_to_cc_2=dis_to_cc[cluster2]
-    if(mean(dis_to_cc_1) > mean(dis_to_cc_2)){
-        tmp=cluster1
-        cluster1=cluster2
-        cluster2=tmp
-        dis_to_cc_1=dis_to_cc[cluster1]
-        dis_to_cc_2=dis_to_cc[cluster2]
-        }
-    cutoff = min(dis_to_cc_2)
-    ll= cc-cutoff
-    rr= cc+cutoff
+    #dis_to_cc_1=dis_to_cc[cluster1]
+    #dis_to_cc_2=dis_to_cc[cluster2]
+    #if(mean(dis_to_cc_1) > mean(dis_to_cc_2)){
+    #    tmp=cluster1
+    #    cluster1=cluster2
+    #    cluster2=tmp
+    #    dis_to_cc_1=dis_to_cc[cluster1]
+    #    dis_to_cc_2=dis_to_cc[cluster2]
+    #    }
+    #cutoff = min(dis_to_cc_2)
+    #ll= cc-cutoff
+    #rr= cc+cutoff
     pdf(paste0(input,'.pdf'))
     plot(a[,1],a[,2],pch=20,type='b',col='royalblue',xlab='Rank of center within a given window',ylab='Number of significant genes within a given window', xlim=c(0,total),ylim=c(0,max(a[,2])) ,main='ANGEL PLOT')
     par(new=T)
@@ -371,15 +371,15 @@ if len(SIG)>0:
     lines(c(rr,rr),c(0,max(a[,2])*2/3.0),col='red',lwd=1,lty=2)
     legend('top',legend=c(legend_1))
     text(as.integer(cc), max(a[,2])*10/20, pos=3, labels=paste0('Center:',as.character(cc)),col='red')
-    text(as.integer(ll), max(a[,2])*20/30, pos=3, labels=paste0('L-cut:',as.character(ll)),col='red')
-    text(as.integer(rr), max(a[,2])*20/30, pos=3, labels=paste0('R-cut:',as.character(rr)),col='red')
+    #text(as.integer(ll), max(a[,2])*20/30, pos=3, labels=paste0('L-cut:',as.character(ll)),col='red')
+    #text(as.integer(rr), max(a[,2])*20/30, pos=3, labels=paste0('R-cut:',as.character(rr)),col='red')
     text(as.integer(cc), max(a[,2])*9/20, pos=2, labels=paste0('Left:',as.character(Pleft),'%'),col='red')
     text(as.integer(cc), max(a[,2])*9/20, pos=4, labels=paste0('Right:',as.character(Pright),'%'),col='red')
     dev.off()
-    left_gene=a_total[which(a_total[,1]<=ll),c(1,2)]
-    right_gene=a_total[which(a_total[,1]>=rr),c(1,2)]
-    write.table(file=paste0(input_total,'.left_gene.tsv'),left_gene,sep='\t',quote=F,row.names=F,col.names=F)
-    write.table(file=paste0(input_total,'.right_gene.tsv'),right_gene,sep='\t',quote=F,row.names=F,col.names=F)
+    #left_gene=a_total[which(a_total[,1]<=ll),c(1,2)]
+    #right_gene=a_total[which(a_total[,1]>=rr),c(1,2)]
+    #write.table(file=paste0(input_total,'.left_gene.tsv'),left_gene,sep='\t',quote=F,row.names=F,col.names=F)
+    #write.table(file=paste0(input_total,'.right_gene.tsv'),right_gene,sep='\t',quote=F,row.names=F,col.names=F)
 
 
     '''
