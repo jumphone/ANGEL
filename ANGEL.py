@@ -358,7 +358,7 @@ if len(SIG)>0:
     #ll= cc-cutoff
     #rr= cc+cutoff
     pdf(paste0(input,'.pdf'))
-    plot(a[,1],a[,2],pch=20,type='b',col='royalblue',xlab='Rank of center within a given window',ylab='Number of significant genes within a given window', xlim=c(0,total),ylim=c(0,max(a[,2])) ,main='ANGEL PLOT')
+    plot(a[,1],a[,2],pch=20,type='b',col='royalblue',xlab='Rank of the center gene within a given window',ylab='Number of significant genes within a given window', xlim=c(0,total),ylim=c(0,max(a[,2])) ,main='ANGEL PLOT')
     #par(new=T)
     #plot(a[cluster2,1],a[cluster2,2],pch=1,type='p',col='red',xlab='',ylab='', xlim=c(0,total),ylim=c(0,max(a[,2])) ,main='')
     legend_1=paste0( 'Total:',as.character(total) , '   Sig:',as.character(sig),'   Window:', as.character(window))
