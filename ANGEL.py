@@ -33,7 +33,7 @@ $3: Output path
 
 '''
 
-import sys,random,time
+import sys,time
 import numpy.ma as ma
 import numpy as np
 
