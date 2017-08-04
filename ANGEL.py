@@ -378,8 +378,8 @@ if len(SIG)>0:
     dev.off()
     left_gene=a_total[which(a_total[,1]<=ll),c(1,2)]
     right_gene=a_total[which(a_total[,1]>=rr),c(1,2)]
-    write.table(file=paste0(input_total,'.left_gene.tsv'),left_gene,sep='   ',quote=F,row.names=F,col.names=F,sep='\t')
-    write.table(file=paste0(input_total,'.right_gene.tsv'),right_gene,sep=' ',quote=F,row.names=F,col.names=F,sep='\t')
+    write.table(file=paste0(input_total,'.left_gene.tsv'),left_gene,sep='\t',quote=F,row.names=F,col.names=F)
+    write.table(file=paste0(input_total,'.right_gene.tsv'),right_gene,sep='\t',quote=F,row.names=F,col.names=F)
 
 
     '''
