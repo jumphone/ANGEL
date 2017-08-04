@@ -337,7 +337,7 @@ if len(SIG)>0:
     sig='''+str(len(siglist)) +'''
     window='''+str(half_window*2+1) +'''
     fit=lm(a[,2] ~ I(a[,1]^2)+a[,1])
-    cc=round(fit$coefficients[3]/(-2*fit$coefficients[2]),2)    
+    cc=round(fit$coefficients[3]/(-2*fit$coefficients[2]),0)    
     #kmeans_input= dist(cbind(predict(fit), abs(a[,1]-cc)))
     dis_to_cc=abs(a[,1]-cc)
     kmeans_input= dist(cbind(scale(a[,2]), scale(dis_to_cc)))
